@@ -1,10 +1,11 @@
 # input variables
 
-name       = "OBS"
+name       = "obs"
 owner      = "Carlos"
 cidr_block = "10.10.0.0/16"
-project    = "LC"
+project    = "LiveCloud"
 
+/*
 instance_map = {
   "instance1" = {
     ami           = "ami-00060fac2f8c42d30"
@@ -17,6 +18,8 @@ instance_map = {
     zone          = "b"
   }
 }
+*/
+instance_map = {}
 
 
 
