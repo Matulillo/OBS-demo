@@ -7,11 +7,6 @@ variable "name" {
   default     = "MyName"
 }
 
-variable "owner" {
-  description = "Owner of Application"
-  default     = "MyOwner"
-}
-
 variable "project" {
   description = "Owner of Application"
   default     = "MyProject"
@@ -24,13 +19,40 @@ variable "aws_region" {
 }
 
 ## ec2 attibutes 
-variable "instance_map" {
-  type = map(object({
-    ami           = string
-    instance_type = string
-    zone          = string
-    private_ip    = string
-  }))
+variable "vpc_id" {
+ default = null
+}
+
+
+variable "subnet_id" {
+ default = null
+}
+
+variable "ami" {
+  type = string
+  default = null
+}
+
+variable "eip" {
+  description = "Enable EIP to a certain instance"
+  type = bool
+  default = false
+}
+
+variable "private_ip" {
+  type = string
+  default = null
+  
+}
+
+variable "instance_type" {
+  type = string
+  default = null
+}
+
+variable "sg_id" {
+  type = string
+  description = "SG id to attach to the EC2"
   default = null
 }
 

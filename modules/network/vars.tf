@@ -5,11 +5,6 @@ variable "name" {
   default     = "MyName"
 }
 
-variable "owner" {
-  description = "Owner of Application"
-  default     = "MyOwner"
-}
-
 variable "project" {
   description = "Owner of Application"
   default     = "MyProject"
@@ -22,6 +17,12 @@ variable "aws_region" {
 }
 
 # Network variables 
+variable "vpc_create" {
+  default     = false
+  description = "Enable VPC creation"
+
+}
+
 variable "cidr_block" {
   description = "CIDR IP block VPC"
   default     = "10.0.0.0/16"
