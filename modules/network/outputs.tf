@@ -10,7 +10,7 @@ output "vpc_cidr_block" {
 }
 
 output "subnet_ids" {
-  value = { for s in aws_subnet.this : trimprefix(s.tags["Name"], "Subnet-") => s.id }
+  value       = { for s in aws_subnet.this : trimprefix(s.tags["Name"], "Subnet-") => s.id }
   description = "Subnet ids"
 }
 

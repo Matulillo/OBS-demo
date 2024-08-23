@@ -34,7 +34,7 @@ variable "subnet_map" {
   default = {}
 }
 
-## ec2 attibutes 
+## ec2 attributes 
 variable "instance_map" {
   description = "Map to define ec2 configuration"
   type = map(object({
@@ -47,11 +47,24 @@ variable "instance_map" {
   default = {}
 }
 
-variable "sg_id" {
-  type = string
-  default = ""
+variable "custom_sg" {
+  type    = string
+  default = null
 }
 
 locals {
   environment = basename(path.cwd)
+}
+
+## security group attributes 
+variable "sg_rules" {
+  description = "List to define sg configuration"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+    desc        = string
+  }))
+  default = []
 }

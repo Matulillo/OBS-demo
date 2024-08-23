@@ -20,39 +20,44 @@ variable "aws_region" {
 
 ## ec2 attibutes 
 variable "vpc_id" {
- default = null
+  default = null
 }
 
 
 variable "subnet_id" {
- default = null
+  default = null
 }
 
 variable "ami" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "eip" {
   description = "Enable EIP to a certain instance"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "private_ip" {
-  type = string
+  type    = string
   default = null
-  
+
 }
 
 variable "instance_type" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "sg_id" {
-  type = string
+  type        = string
   description = "SG id to attach to the EC2"
+  default     = null
+}
+
+variable "custom_sg" {
+  type    = string
   default = null
 }
 

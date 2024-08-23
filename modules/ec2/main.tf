@@ -3,7 +3,7 @@ locals {
   environment = basename(path.cwd)
   common_tags = {
     Project = var.project
-    Env = local.environment
+    Env     = local.environment
   }
 }
 
@@ -11,19 +11,19 @@ locals {
 # EC2
 ###############################################
 resource "aws_instance" "instance" {
-  ami = var.ami == "amazon" ? data.aws_ami.latest_amazon.id : var.ami == "ubuntu" ? "ami-0e872aee57663ae2d" : "ami-00060fac2f8c42d30"
-  instance_type     = var.instance_type
-  subnet_id = var.subnet_id
-  private_ip = var.private_ip
-  security_groups = [aws_security_group.http_access.id]
-  user_data = file("${path.module}/user_data.sh")
+  ami             = var.ami == "amazon" ? data.aws_ami.latest_amazon.id : var.ami == "ubuntu" ? "ami-0e872aee57663ae2d" : "ami-00060fac2f8c42d30"
+  instance_type   = var.instance_type
+  subnet_id       = var.subnet_id
+  private_ip      = var.private_ip
+  security_groups = [aws_security_group.this_default.id, var.custom_sg ]
+  user_data       = file("${path.module}/user_data.sh")
   tags = merge(
     local.common_tags,
     {
       "Name" = "Server-${var.name}-${local.environment}"
     }
   )
-  depends_on = [ aws_security_group.http_access ]
+  depends_on = [aws_security_group.this_default]
   lifecycle {
     ignore_changes = all
   }
@@ -34,10 +34,10 @@ resource "aws_instance" "instance" {
 ###############################################
 
 resource "aws_eip" "this" {
-  count = var.eip ? 1 : 0 
-  instance = aws_instance.instance.id
-  domain   = "vpc"
-  depends_on = [ aws_instance.instance ]
+  count      = var.eip ? 1 : 0
+  instance   = aws_instance.instance.id
+  domain     = "vpc"
+  depends_on = [aws_instance.instance]
   lifecycle {
     ignore_changes = all
   }
@@ -45,13 +45,13 @@ resource "aws_eip" "this" {
 }
 
 ###############################################
-# Security group ##############################
+# Default security group 
 ###############################################
-resource "aws_security_group" "http_access" {
+resource "aws_security_group" "this_default" {
   name = "SG-${var.name}-${local.environment}"
   #description = "SG test"
   vpc_id = var.vpc_id
-  
+
   ingress {
     from_port   = 80
     to_port     = 80
