@@ -1,5 +1,8 @@
 # OBS-demo
-Basic terraform project template for demo. Follow the below steps 
+Basic terraform project template for demo. 
+It enables the creation of AWS basic cloud enviroments with mainly: VPC,Subnets,routing config, instances, security groups, etc.. using custom modules.  
+
+Follow the below steps
 
 1. Copy template folder and rename it with the name of the new environmnet to deploy
 2. In the main.tf file , set the value of the "key" under backend block as the env name 
