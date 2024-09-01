@@ -12,7 +12,7 @@ project = "LiveCloud"
 # vpc
 ####################### 
 vpc_create     = true
-vpc_cidr_block = "10.101.0.0/16"
+vpc_cidr_block = "10.10.0.0/16"
 
 ########################
 # subnets inputs example
@@ -52,7 +52,6 @@ instance_map = {
 }
 */
 instance_map = {}
-
 #########################
 # Security group inputs example
 #########################
