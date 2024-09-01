@@ -1,6 +1,6 @@
 provider "aws" {
   region                   = "eu-central-1"
-  shared_credentials_files = ["C:\\Users\\NET.IBCSYSADMIN4\\Code\\tf\\credentials"]
+  shared_credentials_files = ["C:\\Users\\NET.IBCSYSADMIN4\\Code\\Terraform\\_tools\\credentials"]
 }
 
 terraform {
