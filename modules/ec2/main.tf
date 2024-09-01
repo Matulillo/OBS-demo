@@ -14,8 +14,8 @@ resource "aws_instance" "instance" {
   ami             = var.ami == "amazon" ? data.aws_ami.latest_amazon.id : var.ami == "ubuntu" ? "ami-0e872aee57663ae2d" : "ami-00060fac2f8c42d30"
   instance_type   = var.instance_type
   subnet_id       = var.subnet_id
-  private_ip      = var.private_ip
-  security_groups = [aws_security_group.this_default.id, var.custom_sg ]
+  private_ip      = var.private_ip != null ? var.private_ip : null
+  security_groups = [aws_security_group.this_default.id, var.custom_sg]
   user_data       = file("${path.module}/user_data.sh")
   tags = merge(
     local.common_tags,

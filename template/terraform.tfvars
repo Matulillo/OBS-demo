@@ -20,16 +20,15 @@ vpc_cidr_block = "10.10.0.0/16"
 /*
 subnet_map = {
   "main" = {
-    sub_cidr = "10.101.10.0/24"
+    sub_cidr = "10.10.10.0/24"
     zone     = "eu-central-1a"
   }
   "backup" = {
-    sub_cidr = "10.101.20.0/24"
+    sub_cidr = "10.10.20.0/24"
     zone     = "eu-central-1b"
   }
 }
 */
-subnet_map = {}
 #########################
 # ec2-instances inputs example
 #########################
@@ -39,19 +38,18 @@ instance_map = {
     ami           = "amazon"
     instance_type = "t2.micro"
     subnet        = "main"
-    private_ip    = "10.101.10.10"
+    private_ip    = "10.10.10.10"
     eip           = true
   }
-  "instance3" = {
+  "instance2" = {
     ami           = "amazon"
     instance_type = "t2.micro"
     subnet        = "backup"
-    private_ip    = "10.101.20.30"
+    private_ip    = null
     eip           = false
   }
 }
 */
-instance_map = {}
 #########################
 # Security group inputs example
 #########################
@@ -65,15 +63,15 @@ sg_rules = [
       desc        = "Test SG rule1"
     },
     {
-      from_port   = 9010
-      to_port     = 9010
+      from_port   = 9002
+      to_port     = 9002
       protocol    = "udp"
       cidr_blocks = ["0.0.0.0/0"]
       desc        = "Test SG rule2"
     }
 ]
 */
-sg_rules = []
+
 
 
 

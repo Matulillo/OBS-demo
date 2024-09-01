@@ -24,12 +24,12 @@ module "demo-network" {
 
 # invoke security group module
 module "demo-security-group" {
-  source = "../../modules/security-group"
-  vpc_id = module.demo-network.vpc_id
+  source        = "../../modules/security-group"
+  vpc_id        = module.demo-network.vpc_id
   ingress_rules = var.sg_rules
-  name       = var.name
-  project    = var.project
-  depends_on = [ module.demo-network ]
+  name          = var.name
+  project       = var.project
+  depends_on    = [module.demo-network]
 }
 
 # invoke ec2 module
@@ -45,6 +45,6 @@ module "demo-instance" {
   vpc_id        = module.demo-network.vpc_id
   name          = each.key
   project       = var.project
-  custom_sg        = module.demo-security-group.sg_id
-  depends_on = [ module.demo-security-group ]
+  custom_sg     = module.demo-security-group.sg_id
+  depends_on    = [module.demo-security-group]
 }

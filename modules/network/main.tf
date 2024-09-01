@@ -23,10 +23,10 @@ resource "aws_vpc" "this" {
 # Subnets
 ################################################################################
 resource "aws_subnet" "this" {
-  for_each                = var.subnet_map
-  vpc_id                  = aws_vpc.this[0].id
-  cidr_block              = each.value.sub_cidr
-  availability_zone       = each.value.zone
+  for_each          = var.subnet_map
+  vpc_id            = aws_vpc.this[0].id
+  cidr_block        = each.value.sub_cidr
+  availability_zone = each.value.zone
   #map_public_ip_on_launch = true
   tags = merge(
     local.common_tags,
